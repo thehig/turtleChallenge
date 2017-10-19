@@ -1,5 +1,7 @@
 //Enums
-export * from './Enums/Enums';
+export * from './Enums/Action';
+export * from './Enums/Direction';
+export * from './Enums/TurtleState';
 
 // Interfaces
 export * from './Interfaces/IPoint';
