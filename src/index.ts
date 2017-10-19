@@ -1,21 +1,12 @@
-import { Turtle } from './Turtle';
-import { Mine } from './Mine';
-import { Exit } from './Exit';
-import { Settings } from './Settings';
-import { Board } from './Board';
-import { Direction, Action } from './Enums';
+//Enums
+export * from './Enums';
 
-export default {
-    // enums
-    Direction,
-    Action,
+// Interfaces
+export * from './IPoint';
 
-    // classes
-    Turtle,
-    Mine,
-    Exit,
-    Board,
-    
-    Settings,
-    Game: null
-};
+// Classes
+export * from './Turtle';
+export * from './Mine';
+export * from './Exit';
+export * from './Settings';
+export * from './Board';

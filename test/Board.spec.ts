@@ -1,6 +1,5 @@
 import { expect } from "chai";
-import index from "../src/index";
-const { Board } = index;
+import { Board } from "../src/";
 
 describe("Board", () => {
   it("is not null or undefined", () => {

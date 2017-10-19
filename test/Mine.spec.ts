@@ -1,6 +1,5 @@
 import { expect } from "chai";
-import index from "../src/index";
-const { Mine } = index;
+import { Mine } from "../src/";
 
 describe("Mine", () => {
   it("is not null or undefined", () => {

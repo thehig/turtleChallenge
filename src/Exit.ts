@@ -1,4 +1,4 @@
-import { IPoint } from './IPoint';
+import { IPoint } from './';
 
 export class Exit implements IPoint {
     x: number;

@@ -1,5 +1,4 @@
-import { IPoint } from './IPoint';
-import { Direction } from './Enums'; 
+import { IPoint, Direction } from './';
 
 export class Turtle implements IPoint {
     x: number;

@@ -1,6 +1,5 @@
 import { expect } from "chai";
-import index from "../src/index";
-const { Exit } = index;
+import { Exit } from "../src/";
 
 describe("Exit", () => {
   it("is not null or undefined", () => {

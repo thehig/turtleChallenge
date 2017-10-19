@@ -1,19 +1,10 @@
-// import index from './Index';
-// const { Board, Turtle, Exit, Mine } = index;
-
-import { Board } from './Board';
-import { Turtle } from './Turtle';
-import { Exit } from './Exit';
-import { Mine } from './Mine';
-import { Direction } from './Enums';
-
+import { Board, Turtle, Exit, Mine, Direction } from './';
 
 export class Settings {
     board: Board;
     turtle: Turtle;
     exit: Exit;
     mines: Array<Mine>;
-    
 
     constructor(board: {width: number, height: number}, start: {x: number, y: number, dir: Direction}, exit: {x: number, y: number}, mines: Array<{x: number, y: number}>) {
         if(board.width <= 0) throw new Error('Unable to create Settings: invalid width');

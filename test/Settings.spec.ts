@@ -1,6 +1,5 @@
 import { expect } from "chai";
-import index from "../src/index";
-const { Settings, Board, Turtle, Exit, Mine, Direction } = index;
+import { Settings, Direction } from "../src/";
 
 describe("Settings", () => {
   it("is not null or undefined", () => {
