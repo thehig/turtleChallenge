@@ -1,4 +1,4 @@
 export interface IPoint {
-    readonly x: Number;
-    readonly y: Number;
+    readonly x: number;
+    readonly y: number;
 }

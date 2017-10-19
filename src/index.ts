@@ -1,4 +1,8 @@
 import { Turtle } from './Turtle';
+import { Mine } from './Mine';
+import { Exit } from './Exit';
+import { Settings } from './Settings';
+import { Board } from './Board';
 import { Direction, Action } from './Enums';
 
 export default {
@@ -8,7 +12,10 @@ export default {
 
     // classes
     Turtle,
-    Game: null,
-    Mine: null,
-    Settings: null
+    Mine,
+    Exit,
+    Board,
+    
+    Settings,
+    Game: null
 };

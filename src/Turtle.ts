@@ -2,13 +2,13 @@ import { IPoint } from './IPoint';
 import { Direction } from './Enums'; 
 
 export class Turtle implements IPoint {
-    x: Number;
-    y: Number;
+    x: number;
+    y: number;
     dir: Direction;
 
-    constructor(x: Number, y: Number, dir: Direction) {
-        this.x = x;
-        this.y = y;
+    constructor(x: number, y: number, dir: Direction) {
+        this.x = Math.floor(x);
+        this.y = Math.floor(y);
         this.dir = dir;
     }
 };
