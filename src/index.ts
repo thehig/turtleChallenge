@@ -1,6 +1,8 @@
+import Point from './Point';
+
 export default {
+    Point,
     Game: null,
-    Point: null,
     Turtle: null,
     Mine: null,
     Settings: null
