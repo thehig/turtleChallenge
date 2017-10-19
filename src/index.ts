@@ -1,8 +1,12 @@
-import Point from './Point';
-import Turtle from './Turtle';
+import { Turtle } from './Turtle';
+import { Direction, Action } from './Enums';
 
 export default {
-    Point,
+    // enums
+    Direction,
+    Action,
+
+    // classes
     Turtle,
     Game: null,
     Mine: null,
