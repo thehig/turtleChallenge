@@ -1,4 +1,4 @@
-import { Board, Turtle, Exit, Mine, Direction } from './';
+import { Board, Turtle, Exit, Mine, Direction } from '../';
 
 export class Settings {
     board: Board;

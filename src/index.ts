@@ -1,12 +1,12 @@
 //Enums
-export * from './Enums';
+export * from './Enums/Enums';
 
 // Interfaces
-export * from './IPoint';
+export * from './Interfaces/IPoint';
 
 // Classes
-export * from './Turtle';
-export * from './Mine';
-export * from './Exit';
-export * from './Settings';
-export * from './Board';
+export * from './Classes/Turtle';
+export * from './Classes/Mine';
+export * from './Classes/Exit';
+export * from './Classes/Settings';
+export * from './Classes/Board';

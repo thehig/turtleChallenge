@@ -1,6 +1,6 @@
-import { IPoint } from './';
+import { IPoint } from '../';
 
-export class Mine implements IPoint {
+export class Exit implements IPoint {
     x: number;
     y: number;
 

@@ -1,4 +1,4 @@
-import { IPoint, Direction } from './';
+import { IPoint, Direction } from '../';
 
 export class Turtle implements IPoint {
     x: number;
