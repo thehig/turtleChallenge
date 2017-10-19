@@ -1,9 +1,10 @@
 import Point from './Point';
+import Turtle from './Turtle';
 
 export default {
     Point,
+    Turtle,
     Game: null,
-    Turtle: null,
     Mine: null,
     Settings: null
 };
