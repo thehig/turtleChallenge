@@ -40,4 +40,11 @@ describe("Board", () => {
       expect(board.inBounds({ x: 1, y: 10})).to.be.false;  
     });
   });
+
+  it('creates an initial grid', () => {
+    const myBoard = new Board(10, 10);
+    expect(myBoard).to.have.property('grid');
+    expect(myBoard.grid).to.have.length(10);
+    expect(myBoard.grid[0]).to.have.length(10);
+  });
 });
