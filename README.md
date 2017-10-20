@@ -36,7 +36,7 @@ The `IPoint` interface is used to present a consistent set of X, Y properties fo
 ### Modules
 
 * Engine
-  * The engine module is responsible for taking a `Settings` object and an `Actions` object and combining the two to create a `GameState`
+  * The engine module is responsible for taking a `GameState` object and an `Actions` object and combining the two to create a `GameState`
   * Assuming the `GameState` does not throw an error on creation, it will represent the current state of the game, the board, any mines, exit and/or turtle
   * The Engine has an `applyAction` static function that takes `GameState` and `Action` as parameters and returns a new `GameState` with the `Action` applied, or throws an error
   * End cases are represented by the `TurtleState` enum. An end case of each enum value can have only a single implication

@@ -11,7 +11,7 @@ export { Actions } from './Classes/Actions';
 export { Turtle } from './Classes/Turtle';
 export { Mine } from './Classes/Mine';
 export { Exit } from './Classes/Exit';
-export { Settings } from './Classes/Settings';
+export { GameState } from './Classes/GameState';
 export { Board } from './Classes/Board';
 
 // Functions

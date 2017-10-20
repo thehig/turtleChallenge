@@ -1,10 +1,10 @@
-import { Settings, Actions, Action } from './src/';
+import { GameState, Actions, Action } from './src/';
 
-var settings = new Settings({width: 10, height: 10}, {x: 0, y: 0}, {x: 9, y:9}, [{x: 4, y:5}, {x:5, y: 5}]);
+var GameState = new GameState({width: 10, height: 10}, {x: 0, y: 0}, {x: 9, y:9}, [{x: 4, y:5}, {x:5, y: 5}]);
 var actions = new Actions("mmm");
 
 try {
-    var game = new TurtleChallenge(settings);
+    var game = new TurtleChallenge(GameState);
 
     // Single command
     var finalState = game.runAll(actions);

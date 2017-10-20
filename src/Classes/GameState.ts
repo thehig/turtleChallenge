@@ -1,6 +1,6 @@
 import { Board, Turtle, Exit, Mine, Direction, TurtleState } from "../";
 
-export class Settings {
+export class GameState {
   board: Board;
   turtle: Turtle;
   exit: Exit;
@@ -13,21 +13,21 @@ export class Settings {
     mines: Array<{ x: number; y: number }>
   ) {
     if (board.width <= 0)
-      throw new Error("Unable to create Settings: invalid width");
+      throw new Error("Unable to create GameState: invalid width");
     if (board.height <= 0)
-      throw new Error("Unable to create Settings: invalid height");
+      throw new Error("Unable to create GameState: invalid height");
     this.board = new Board(board.width, board.height);
 
     this.turtle = new Turtle(start.x, start.y, start.dir);
 
     if (!this.board.inBounds(exit))
-      throw new Error("Unable to create Settings: exit out of bounds");
+      throw new Error("Unable to create GameState: exit out of bounds");
     this.exit = new Exit(exit.x, exit.y);
 
     this.mines = mines.map((mine: { x: number; y: number }, index: number) => {
       if (!this.board.inBounds(mine))
         throw new Error(
-          `Unable to create Settings: mine ${index} out of bounds`
+          `Unable to create GameState: mine ${index} out of bounds`
         );
       return new Mine(mine.x, mine.y);
     });
