@@ -13,4 +13,5 @@ export { Mine } from './Classes/Mine';
 export { Exit } from './Classes/Exit';
 export { Settings } from './Classes/Settings';
 export { Board } from './Classes/Board';
-export { Engine } from './Classes/Engine';
+// export { Engine } from './Classes/Engine';
+export { GameState } from './Classes/GameState';
