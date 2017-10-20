@@ -1,14 +1,16 @@
 //Enums
-export * from './Enums/Action';
-export * from './Enums/Direction';
-export * from './Enums/TurtleState';
+export { Action } from './Enums/Action';
+export { Direction } from './Enums/Direction';
+export { TurtleState } from './Enums/TurtleState';
 
 // Interfaces
-export * from './Interfaces/IPoint';
+export { IPoint } from './Interfaces/IPoint';
 
 // Classes
-export * from './Classes/Turtle';
-export * from './Classes/Mine';
-export * from './Classes/Exit';
-export * from './Classes/Settings';
-export * from './Classes/Board';
+export { Actions } from './Classes/Actions';
+export { Turtle } from './Classes/Turtle';
+export { Mine } from './Classes/Mine';
+export { Exit } from './Classes/Exit';
+export { Settings } from './Classes/Settings';
+export { Board } from './Classes/Board';
+export { Engine } from './Classes/Engine';
