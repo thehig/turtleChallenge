@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { Settings, Direction } from "../src/";
+import { Settings, Direction, TurtleState } from "../src/";
 
 describe("Settings", () => {
   it("is not null or undefined", () => {
@@ -95,62 +95,116 @@ describe("Settings", () => {
     expect(settings.mines[0]).to.have.property("y", 1);
   });
 
-  it("throws if any point is outside the board", () => {
-    expect(
-      () =>
-        new Settings(
-          { width: 10, height: 10 },
-          { x: 10, y: 9, dir: Direction.North },
-          { x: 9, y: 9 },
-          []
-        )
-    ).to.throw(/start out of bounds/);
-    expect(
-      () =>
-        new Settings(
-          { width: 10, height: 10 },
-          { x: 9, y: 10, dir: Direction.North },
-          { x: 9, y: 9 },
-          []
-        )
-    ).to.throw(/start out of bounds/);
+  describe('throws if', () => {
+    it("out of bounds - Exit", () => {
+      expect(
+        () =>
+          new Settings(
+            { width: 10, height: 10 },
+            { x: 9, y: 9, dir: Direction.North },
+            { x: 10, y: 9 },
+            []
+          )
+      ).to.throw(/exit out of bounds/);
+      
+      expect(
+        () =>
+          new Settings(
+            { width: 10, height: 10 },
+            { x: 9, y: 9, dir: Direction.North },
+            { x: 9, y: 10 },
+            []
+          )
+      ).to.throw(/exit out of bounds/);
+    });
 
-    expect(
-      () =>
-        new Settings(
-          { width: 10, height: 10 },
-          { x: 9, y: 9, dir: Direction.North },
-          { x: 10, y: 9 },
-          []
-        )
-    ).to.throw(/exit out of bounds/);
-    expect(
-      () =>
-        new Settings(
-          { width: 10, height: 10 },
-          { x: 9, y: 9, dir: Direction.North },
-          { x: 9, y: 10 },
-          []
-        )
-    ).to.throw(/exit out of bounds/);
+    it('out of bounds - Mine', () => {
+      expect(
+        () =>
+          new Settings(
+            { width: 10, height: 10 },
+            { x: 9, y: 9, dir: Direction.North },
+            { x: 9, y: 9 },
+            [{ x: 10, y: 9 }]
+          )
+      ).to.throw(/mine 0 out of bounds/);
+      expect(
+        () =>
+          new Settings(
+            { width: 10, height: 10 },
+            { x: 9, y: 9, dir: Direction.North },
+            { x: 9, y: 9 },
+            [{ x: 9, y: 10 }]
+          )
+      ).to.throw(/mine 0 out of bounds/);
+    });
 
-    expect(
-      () =>
-        new Settings(
-          { width: 10, height: 10 },
-          { x: 9, y: 9, dir: Direction.North },
-          { x: 9, y: 9 },
-          [{ x: 10, y: 9 }]
-        )
-    ).to.throw(/mine 0 out of bounds/);
-    expect(
-      () =>
-        new Settings(
-          { width: 10, height: 10 },
-          { x: 9, y: 9, dir: Direction.North },
-          { x: 9, y: 9 },
-          [{ x: 9, y: 10 }]
-        )
-    ).to.throw(/mine 0 out of bounds/);
+    
+    it('collision - Mine, Mine', () => {
+      expect(
+        () =>
+          new Settings(
+            { width: 10, height: 10 },
+            { x: 9, y: 9, dir: Direction.North },
+            { x: 9, y: 9 },
+            [{ x: 9, y: 9 }, { x: 9, y: 9 }]
+          )
+      ).to.throw(/Mine collision/);
+    });
+
+    it('collision - Mine, Exit', () => {
+      expect(
+        () =>
+          new Settings(
+            { width: 10, height: 10 },
+            { x: 9, y: 9, dir: Direction.North },
+            { x: 9, y: 9 },
+            [{ x: 9, y: 9 }]
+          )
+      ).to.throw(/Mine collision/);
+    });
+  });
+  
+  describe('Turtle State', () => {
+    it('is IN_DANGER after spawning in an empty square', () => {
+      const mySettings = new Settings(
+        { width: 3, height: 3 },
+        { x: 0, y: 0 },
+        { x: 2, y: 2 },
+        [{ x: 1, y: 1 }]
+      );
+
+      expect(mySettings.turtle).to.have.property('state', TurtleState.InDanger);
+    });
+    it('is DEAD after spawning on a mine', () => {
+      const mySettings = new Settings(
+        { width: 3, height: 3 },
+        { x: 1, y: 1 },
+        { x: 2, y: 2 },
+        [{ x: 1, y: 1 }]
+      );
+
+      expect(mySettings.turtle).to.have.property('state', TurtleState.MineHit);
+    });
+    it('is SUCCESS after spawning on the exit', () => {
+      const mySettings = new Settings(
+        { width: 3, height: 3 },
+        { x: 2, y: 2 },
+        { x: 2, y: 2 },
+        [{ x: 1, y: 1 }]
+      );
+
+      expect(mySettings.turtle).to.have.property('state', TurtleState.Success);
+    });
+    it('is OUT_OF_BOUNDS after spawning outside the board', () => {
+      const mySettings = new Settings(
+        { width: 3, height: 3 },
+        { x: -1, y: -1 },
+        { x: 2, y: 2 },
+        [{ x: 1, y: 1 }]
+      );
+
+      expect(mySettings.turtle).to.have.property('state', TurtleState.OutOfBounds);
+    });
   });
 });

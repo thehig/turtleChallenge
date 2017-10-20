@@ -61,7 +61,7 @@ export const initializeGrid = function(width: number, height: number): IPoint[][
     for(let i = 0; i < height; i++) {
         grid[i] = [];
         for(let j = 0; j < width; j++) {
-            grid[i][j] = { x: j, y: i };
+            grid[i][j] = null;
         }
     }
     return grid;
