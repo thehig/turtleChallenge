@@ -10,6 +10,9 @@ describe("Turtle", () => {
   it("has a constructor that takes 3 parameters", () =>
     expect(() => new Turtle(0, 0, Direction.North)).not.to.throw());
 
+  it("defaults direction to North if not provided", () =>
+    expect(new Turtle(0, 0)).to.have.property("dir", Direction.North));
+
   it("sets a valid X and Y value from the constructor", () => {
     const myTurtle = new Turtle(10, 10, Direction.North);
     expect(myTurtle).to.have.property("x", 10);
@@ -27,7 +30,6 @@ describe("Turtle", () => {
     const myTurtle = new Turtle(9.1, 9.99, Direction.North);
     expect(() => myTurtle.act(Action.Error)).to.throw(/Unknown Turtle action/);
   });
-
 
   describe("state", () => {
     it("defaults to Initializing", () => {
@@ -58,9 +60,11 @@ describe("Turtle", () => {
       expect(oneRotation).to.have.property("dir", Direction.East);
     });
 
-    it('throws an error if Direction is invalid', () => {
+    it("throws an error if Direction is invalid", () => {
       const myTurtle = new Turtle(9.1, 9.99, Direction.Error);
-      expect(() => myTurtle.act(Action.Rotate)).to.throw(/Unknown Turtle Rotate direction/);
+      expect(() => myTurtle.act(Action.Rotate)).to.throw(
+        /Unknown Turtle Rotate direction/
+      );
     });
 
     it("rotates through the directions properly", () => {
@@ -81,16 +85,18 @@ describe("Turtle", () => {
     beforeEach(() => (startingTurtle = new Turtle(3, 3, Direction.North)));
     afterEach(() => (startingTurtle = null));
 
-    it('returns a new instance', () => {
+    it("returns a new instance", () => {
       var oneRotation = startingTurtle.act(Action.Move);
 
-      expect(startingTurtle).to.have.property('y', 3);
-      expect(oneRotation).to.have.property('y', 2);
+      expect(startingTurtle).to.have.property("y", 3);
+      expect(oneRotation).to.have.property("y", 2);
     });
-    
-    it('throws an error if Direction is invalid', () => {
+
+    it("throws an error if Direction is invalid", () => {
       const myTurtle = new Turtle(9.1, 9.99, Direction.Error);
-      expect(() => myTurtle.act(Action.Move)).to.throw(/Unknown Turtle Move direction/);
+      expect(() => myTurtle.act(Action.Move)).to.throw(
+        /Unknown Turtle Move direction/
+      );
     });
 
     it("moves up when facing North", () => {
@@ -102,9 +108,7 @@ describe("Turtle", () => {
     });
 
     it("moves right when facing East", () => {
-      var movedTurtle = startingTurtle
-        .act(Action.Rotate)
-        .act(Action.Move);
+      var movedTurtle = startingTurtle.act(Action.Rotate).act(Action.Move);
 
       expect(movedTurtle).to.have.property("dir", Direction.East);
       expect(movedTurtle).to.have.property("x", 4);

@@ -6,7 +6,7 @@ export class Settings {
     exit: Exit;
     mines: Array<Mine>;
 
-    constructor(board: {width: number, height: number}, start: {x: number, y: number, dir: Direction}, exit: {x: number, y: number}, mines: Array<{x: number, y: number}>) {
+    constructor(board: {width: number, height: number}, start: {x: number, y: number, dir?: Direction}, exit: {x: number, y: number}, mines: Array<{x: number, y: number}>) {
         if(board.width <= 0) throw new Error('Unable to create Settings: invalid width');
         if(board.height <= 0) throw new Error('Unable to create Settings: invalid height');
         this.board = new Board(board.width, board.height);

@@ -19,6 +19,18 @@ describe("Settings", () => {
     ).not.to.throw();
   });
 
+  it("defaults Turtle direction to North", () => {
+    const mySettings = new Settings(
+      { width: 5, height: 5 },
+      { x: 0, y: 0 },
+      { x: 2, y: 2 },
+      [{ x: 1, y: 1 }, { x: 3, y: 3 }]
+    );
+
+    expect(mySettings).to.have.property('turtle');
+    expect(mySettings.turtle).to.have.property('dir', Direction.North);
+  });
+
   it("rejects board width and/or height values less than 1", () => {
     expect(
       () =>

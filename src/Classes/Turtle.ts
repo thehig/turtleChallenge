@@ -6,10 +6,10 @@ export class Turtle implements IPoint {
     dir: Direction;
     state: TurtleState;
 
-    constructor(x: number, y: number, dir: Direction, state?: TurtleState) {
+    constructor(x: number, y: number, dir?: Direction, state?: TurtleState) {
         this.x = Math.floor(x);
         this.y = Math.floor(y);
-        this.dir = dir;
+        this.dir = dir || Direction.North;
         this.state = state ? state : TurtleState.Initializing;
     }
 
