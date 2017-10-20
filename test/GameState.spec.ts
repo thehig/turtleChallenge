@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { GameState, Direction, TurtleState } from "../src/";
+import { GameState, Direction, TurtleState, Action } from "../src/";
 
 describe("GameState", () => {
   it("is not null or undefined", () => {
@@ -27,8 +27,8 @@ describe("GameState", () => {
       [{ x: 1, y: 1 }, { x: 3, y: 3 }]
     );
 
-    expect(myGameState).to.have.property('turtle');
-    expect(myGameState.turtle).to.have.property('dir', Direction.North);
+    expect(myGameState).to.have.property("turtle");
+    expect(myGameState.turtle).to.have.property("dir", Direction.North);
   });
 
   it("rejects board width and/or height values less than 1", () => {
@@ -74,28 +74,28 @@ describe("GameState", () => {
   });
 
   it("Floors all incoming values", () => {
-    const GameState = new GameState(
+    const myGameState = new GameState(
       { height: 10.55, width: 10.1 },
       { x: 0.1, y: 0.9, dir: Direction.North },
       { x: 2.5, y: 2.5 },
       [{ x: 1.6, y: 1.6 }, { x: 3.2, y: 3.3 }]
     );
 
-    expect(GameState.board).to.have.property("width", 10);
-    expect(GameState.board).to.have.property("height", 10);
+    expect(myGameState.board).to.have.property("width", 10);
+    expect(myGameState.board).to.have.property("height", 10);
 
-    expect(GameState.turtle).to.have.property("x", 0);
-    expect(GameState.turtle).to.have.property("y", 0);
+    expect(myGameState.turtle).to.have.property("x", 0);
+    expect(myGameState.turtle).to.have.property("y", 0);
 
-    expect(GameState.exit).to.have.property("x", 2);
-    expect(GameState.exit).to.have.property("y", 2);
+    expect(myGameState.exit).to.have.property("x", 2);
+    expect(myGameState.exit).to.have.property("y", 2);
 
-    expect(GameState.mines).to.have.length(2);
-    expect(GameState.mines[0]).to.have.property("x", 1);
-    expect(GameState.mines[0]).to.have.property("y", 1);
+    expect(myGameState.mines).to.have.length(2);
+    expect(myGameState.mines[0]).to.have.property("x", 1);
+    expect(myGameState.mines[0]).to.have.property("y", 1);
   });
 
-  describe('throws if', () => {
+  describe("throws if", () => {
     it("out of bounds - Exit", () => {
       expect(
         () =>
@@ -106,7 +106,7 @@ describe("GameState", () => {
             []
           )
       ).to.throw(/exit out of bounds/);
-      
+
       expect(
         () =>
           new GameState(
@@ -118,7 +118,7 @@ describe("GameState", () => {
       ).to.throw(/exit out of bounds/);
     });
 
-    it('out of bounds - Mine', () => {
+    it("out of bounds - Mine", () => {
       expect(
         () =>
           new GameState(
@@ -139,8 +139,7 @@ describe("GameState", () => {
       ).to.throw(/mine 0 out of bounds/);
     });
 
-    
-    it('collision - Mine, Mine', () => {
+    it("collision - Mine, Mine", () => {
       expect(
         () =>
           new GameState(
@@ -152,7 +151,7 @@ describe("GameState", () => {
       ).to.throw(/Mine collision/);
     });
 
-    it('collision - Mine, Exit', () => {
+    it("collision - Mine, Exit", () => {
       expect(
         () =>
           new GameState(
@@ -164,9 +163,9 @@ describe("GameState", () => {
       ).to.throw(/Mine collision/);
     });
   });
-  
-  describe('Turtle State', () => {
-    it('is IN_DANGER after spawning in an empty square', () => {
+
+  describe("Turtle State", () => {
+    it("is IN_DANGER after spawning in an empty square", () => {
       const myGameState = new GameState(
         { width: 3, height: 3 },
         { x: 0, y: 0 },
@@ -174,9 +173,12 @@ describe("GameState", () => {
         [{ x: 1, y: 1 }]
       );
 
-      expect(myGameState.turtle).to.have.property('state', TurtleState.InDanger);
+      expect(myGameState.turtle).to.have.property(
+        "state",
+        TurtleState.InDanger
+      );
     });
-    it('is DEAD after spawning on a mine', () => {
+    it("is DEAD after spawning on a mine", () => {
       const myGameState = new GameState(
         { width: 3, height: 3 },
         { x: 1, y: 1 },
@@ -184,9 +186,9 @@ describe("GameState", () => {
         [{ x: 1, y: 1 }]
       );
 
-      expect(myGameState.turtle).to.have.property('state', TurtleState.MineHit);
+      expect(myGameState.turtle).to.have.property("state", TurtleState.MineHit);
     });
-    it('is SUCCESS after spawning on the exit', () => {
+    it("is SUCCESS after spawning on the exit", () => {
       const myGameState = new GameState(
         { width: 3, height: 3 },
         { x: 2, y: 2 },
@@ -194,9 +196,9 @@ describe("GameState", () => {
         [{ x: 1, y: 1 }]
       );
 
-      expect(myGameState.turtle).to.have.property('state', TurtleState.Success);
+      expect(myGameState.turtle).to.have.property("state", TurtleState.Success);
     });
-    it('is OUT_OF_BOUNDS after spawning outside the board', () => {
+    it("is OUT_OF_BOUNDS after spawning outside the board", () => {
       const myGameState = new GameState(
         { width: 3, height: 3 },
         { x: -1, y: -1 },
@@ -204,7 +206,61 @@ describe("GameState", () => {
         [{ x: 1, y: 1 }]
       );
 
-      expect(myGameState.turtle).to.have.property('state', TurtleState.OutOfBounds);
+      expect(myGameState.turtle).to.have.property(
+        "state",
+        TurtleState.OutOfBounds
+      );
+    });
+
+    // TODO:
+    //    Error if no Turtle
+    //    Error if no Exit
+  });
+
+  describe("applyAction", () => {
+    // TODO: Investigate oddity of height: 1, "Cannot set property '0' of undefined"
+    // TODO: Test the creation of the next game state, ensure it's a new object with new references, and is *NOT* a by-ref copy
+    var myGameState;
+
+    beforeEach(() => {
+      myGameState = new GameState(
+        { width: 2, height: 2 },
+        { x: 0, y: 0 },
+        { x: 1, y: 0 },
+        []
+      );
+    });
+
+    afterEach(() => {
+      myGameState = null;
+    });
+
+    it("Move puts the turtle out of bounds", () => {
+      var nextGameState = myGameState.applyAction(Action.Move);
+      
+      expect(nextGameState.turtle).to.have.property('x', 0);
+      expect(nextGameState.turtle).to.have.property('y', -1);
+      expect(nextGameState.turtle).to.have.property('dir', Direction.North);
+      expect(nextGameState.turtle).to.have.property('state', TurtleState.OutOfBounds);
+    });
+    
+    it("Rotate puts the turtle facing East", () => {
+      var nextGameState = myGameState.applyAction(Action.Rotate);
+      
+      expect(nextGameState.turtle).to.have.property('x', 0);
+      expect(nextGameState.turtle).to.have.property('y', 0);
+      expect(nextGameState.turtle).to.have.property('dir', Direction.East);
+      expect(nextGameState.turtle).to.have.property('state', TurtleState.InDanger);
+    });
+    
+    it("Rotate then Move puts the turtle facing East in grid {1, 0}", () => {
+      var rotateState = myGameState.applyAction(Action.Rotate);
+      var moveState = rotateState.applyAction(Action.Move);
+      
+      expect(moveState.turtle).to.have.property('x', 1);
+      expect(moveState.turtle).to.have.property('y', 0);
+      expect(moveState.turtle).to.have.property('dir', Direction.East);
+      expect(moveState.turtle).to.have.property('state', TurtleState.Success);
     });
   });
 });

@@ -1,4 +1,4 @@
-import { Board, Turtle, Exit, Mine, Direction, TurtleState } from "../";
+import { Board, Turtle, Exit, Mine, Direction, TurtleState, Action } from "../";
 
 export class GameState {
   board: Board;
@@ -59,7 +59,7 @@ export class GameState {
         this.turtle.state = TurtleState.InDanger;
       } else if ( existingItem instanceof Mine ) {
         this.turtle.state = TurtleState.MineHit;
-      } else if ( existingItem instanceof Exit ) {
+      } else if ( existingItem instanceof Exit ) { // Despite the TypeScript warning here, this code works
         this.turtle.state = TurtleState.Success;
       }
       
@@ -69,4 +69,8 @@ export class GameState {
       this.turtle.state = TurtleState.OutOfBounds;
     }
   }
+
+  applyAction(action: Action): GameState {
+    return new GameState(this.board, this.turtle.act(action), this.exit, this.mines);
+  };
 }
