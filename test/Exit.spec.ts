@@ -7,7 +7,7 @@ describe("Exit", () => {
     expect(Exit).to.not.be.undefined;
   });
 
-  it("has a constructor that takes 3 parameters", () =>
+  it("has a constructor that takes 2 parameters", () =>
     expect(() => new Exit(0, 0)).not.to.throw());
 
   it("sets a valid X and Y value from the constructor", () => {
