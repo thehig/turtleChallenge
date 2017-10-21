@@ -15,7 +15,7 @@ describe("TurtleChallenge", () => {
         )
     ).not.to.throw());
 
-  describe("Tick", () => {
+  describe("tick", () => {
     it("should take an Action as a parameter", () => {
       const myTurtleChallenge = new TurtleChallenge(
         new GameState(
@@ -37,7 +37,7 @@ describe("TurtleChallenge", () => {
           []
         )
       );
-      var previousState = myTurtleChallenge.state; /*?*/
+      var previousState = myTurtleChallenge.state;
       myTurtleChallenge.tick(Action.Move);
       expect(myTurtleChallenge.state).to.not.equal(previousState);
     });

@@ -1,4 +1,4 @@
-import { GameState, Turtle, Action, Direction, Board, IPoint } from "./";
+import { GameState, Turtle, Action, Direction, Board, IPoint, Mine, Exit } from "./";
 
 /**
  * Apply the given action to the given turtle

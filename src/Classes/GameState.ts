@@ -57,9 +57,9 @@ export class GameState {
       //  * MineHit if placed in a Mine
       if (existingItem == null) {
         this.turtle.state = TurtleState.InDanger;
-      } else if ( existingItem instanceof Mine ) {
+      } else if ( existingItem.type == 'mine' ) {
         this.turtle.state = TurtleState.MineHit;
-      } else if ( existingItem instanceof Exit ) { // Despite the TypeScript warning here, this code works
+      } else if ( existingItem.type == 'exit' ) {
         this.turtle.state = TurtleState.Success;
       }
       

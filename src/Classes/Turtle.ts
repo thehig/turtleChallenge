@@ -3,6 +3,8 @@ import { IPoint, Direction, TurtleState, Action, applyTurtleAction } from '../';
 export class Turtle implements IPoint {
     x: number;
     y: number;
+    type: 'turtle';
+    
     dir: Direction;
     state: TurtleState;
 
