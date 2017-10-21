@@ -263,4 +263,9 @@ describe("GameState", () => {
       expect(moveState.turtle).to.have.property('state', TurtleState.Success);
     });
   });
+
+  // describe "GameState"
+  //     it "errors if no Turtle is provided"
+  //     it "errors if no Exit is provided"
+
 });

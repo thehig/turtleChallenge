@@ -11,8 +11,9 @@ export { Actions } from './Classes/Actions';
 export { Turtle } from './Classes/Turtle';
 export { Mine } from './Classes/Mine';
 export { Exit } from './Classes/Exit';
-export { GameState } from './Classes/GameState';
 export { Board } from './Classes/Board';
+export { GameState } from './Classes/GameState';
+export { TurtleChallenge } from './Classes/TurtleChallenge';
 
 // Functions
 export { applyTurtleAction, inBounds, initializeGrid } from './functions';
