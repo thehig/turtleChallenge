@@ -57,7 +57,7 @@ export const inBounds = function(board: Board, point: IPoint): Boolean {
 
 export const initializeGrid = function(width: number, height: number): IPoint[][] {
     const grid = [];
-    // Create a grid containing POJOs with {x, y}
+    // Create a grid of appropriate size containing nulls
     for(let i = 0; i < height; i++) {
         grid[i] = [];
         for(let j = 0; j < width; j++) {
