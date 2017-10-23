@@ -1,8 +1,5 @@
 # Turtle Challenge
 
-I MISSED THE STARTING DIRECTION IN THE INITIAL STATE
-
-
 ## About
 
 Turtle Challenge
@@ -46,12 +43,12 @@ Turtle actions can be either
 
 The App.js is mainly concerned with bootstrapping the TurtleChallenge engine and demonstrating how to load a solution from a file, and both `tick` and `run` a solution. An example is provided that reads a [GameState](#gamestate) from a file `games/3x3/1.json` and a set of moves to test for that game in `games/3x3/1.txt`.
 
-The Game State JSON defines the initial state of the game
+The Game State JSON defines the initial state of the game. Note that the turtle starting direction defaults to `NORTH` and must match the [enum](#direction) *exactly* if being specified
 
 ```json
 {
   "board": { "width": 3, "height": 3 },
-  "turtle": { "x": 0, "y": 0 },
+  "turtle": { "x": 0, "y": 0, "dir": "SOUTH" },
   "exit": { "x": 2, "y": 2 },
   "mines": [{ "x": 1, "y": 1 }]
 }
@@ -178,3 +175,11 @@ InDanger | N | The "normal" state of the Turtle, awaiting input to act upon
 * I did encounter a crash with a small dimension board, 5x1 if I remember correctly. Needs more investigation
 * Game does not handle a state where no exit is provided
 * Something like Immutable.JS would be much more reliable and efficient for managing GameState and ensuring elements are not being passed by ref unless explicitly intended
+
+## Future Additions
+
+* CLI script wrapper that would take in the gamestate and gameactions files as parameters and return the output string
+* Some kind of board visualization, either ASCII grid in CLI or some frontend
+* Add more debug output for the Tick and the Run functions
+* Better file reading support/handling
+* More adversarial tests (throwing garbage parameters to ensure it errors properly and usefully)
