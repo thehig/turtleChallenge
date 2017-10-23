@@ -5,7 +5,8 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "node_modules": true,
-        "package-lock.json": true
+        "node_modules": false,
+        "package-lock.json": true,
+        "**/*.disabled": false
     }
 }

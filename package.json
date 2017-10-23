@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register test/*.spec.ts",
+    "build": "tsc",
+    "start": "npm run build && node app.js",
+    "tsnode": "ts-node app.js"
   },
   "repository": {
     "type": "git",
@@ -19,8 +22,10 @@
   "devDependencies": {
     "@types/chai": "^4.0.4",
     "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.46",
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
+    "ts-node": "^3.3.0",
     "typescript": "^2.5.3"
   }
 }
